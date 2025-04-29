@@ -1,0 +1,54 @@
+
+{
+  "name": "Study Helper",
+  "short_name": "Study Helper",
+  "description": "Access and download study materials offline",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1a73e8",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/lovable-uploads/a9553922-71ba-43f5-81d0-9c37a706a512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/lovable-uploads/a9553922-71ba-43f5-81d0-9c37a706a512.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/lovable-uploads/a9553922-71ba-43f5-81d0-9c37a706a512.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Downloads",
+      "short_name": "Downloads",
+      "description": "View downloaded notes",
+      "url": "/downloads"
+    },
+    {
+      "name": "Bookmarks",
+      "short_name": "Bookmarks",
+      "description": "View bookmarked notes",
+      "url": "/bookmarks"
+    }
+  ],
+  "screenshots": [],
+  "file_handlers": [
+    {
+      "action": "/",
+      "accept": {
+        "application/pdf": [".pdf"]
+      }
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Study Helper</title>
+    <meta name="description" content="Access and download study materials offline" />
+    <meta name="author" content="Lovable" />
+    <meta property="og:image" content="/og-image.png" />
+    
+    <!-- PWA related tags -->
+    <meta name="theme-color" content="#1a73e8" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Study Helper" />
+    <link rel="manifest" href="/manifest.json" />
+    
+    <!-- Apple touch icons for iOS devices -->
+    <link rel="apple-touch-icon" href="/lovable-uploads/a9553922-71ba-43f5-81d0-9c37a706a512.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/lovable-uploads/a9553922-71ba-43f5-81d0-9c37a706a512.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/lovable-uploads/a9553922-71ba-43f5-81d0-9c37a706a512.png" />
+    <link rel="apple-touch-icon" sizes="167x167" href="/lovable-uploads/a9553922-71ba-43f5-81d0-9c37a706a512.png" />
+    
+    <!-- Display mode override to ensure standalone behavior -->
+    <script>
+      if (window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches) {
+        document.documentElement.setAttribute('data-app-mode', 'standalone');
+      }
+    </script>
+    
+    <!-- CSS to hide Lovable buttons and popups -->
+    <style>
+      /* Hide Lovable popup and buttons */
+      .lovable-floating-button,
+      .lovable-badge,
+      #lovable-badge,
+      #lovable-iframe,
+      [data-lovable-badge],
+      [id*="lovable"],
+      [class*="lovable"] {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+        z-index: -9999 !important;
+        height: 0 !important;
+        width: 0 !important;
+        position: absolute !important;
+        overflow: hidden !important;
+        clip: rect(0, 0, 0, 0) !important;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Script to remove any dynamically added Lovable elements -->
+    <script>
+      (function() {
+        // Function to remove Lovable elements
+        function removeLovableElements() {
+          const selectors = [
+            '.lovable-floating-button', 
+            '.lovable-badge', 
+            '#lovable-badge', 
+            '#lovable-iframe',
+            '[data-lovable-badge]',
+            '[id*="lovable"]',
+            '[class*="lovable"]'
+          ];
+          
+          selectors.forEach(selector => {
+            const elements = document.querySelectorAll(selector);
+            elements.forEach(el => {
+              if (el && el.parentNode) {
+                el.parentNode.removeChild(el);
+              }
+            });
+          });
+        }
+        
+        // Run on page load
+        document.addEventListener('DOMContentLoaded', removeLovableElements);
+        
+        // Also run after a short delay to catch dynamically added elements
+        setTimeout(removeLovableElements, 1000);
+        
+        // Set up a MutationObserver to catch any dynamically added elements
+        const observer = new MutationObserver(mutations => {
+          removeLovableElements();
+        });
+        
+        // Start observing the document with the configured parameters
+        observer.observe(document.body, { 
+          childList: true, 
+          subtree: true 
+        });
+      })();
+    </script>
+  </body>
+</html>

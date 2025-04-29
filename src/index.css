@@ -1,0 +1,183 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 210 100% 50%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 20% 96%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 210 20% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 210 20% 96%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 222 47% 11%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5% 26%;
+    --sidebar-primary: 240 6% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 5% 96%;
+    --sidebar-accent-foreground: 240 6% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217 92% 60%;
+    
+    --avatar-bg: 210 100% 95%;
+    --avatar-fg: 210 100% 50%;
+  }
+
+  .dark {
+    --background: 220 47% 11%;
+    --foreground: 0 0% 98%;
+    
+    --card: 225 25% 16%;
+    --card-foreground: 0 0% 98%;
+    
+    --glass-card: 225 30% 15%;
+    --glass-card-foreground: 0 0% 98%;
+    
+    --popover: 222 47% 11%;
+    --popover-foreground: 0 0% 98%;
+    
+    --primary: 210 100% 50%;
+    --primary-foreground: 0 0% 98%;
+    
+    --secondary: 217 33% 18%;
+    --secondary-foreground: 0 0% 98%;
+    
+    --muted: 217 33% 18%;
+    --muted-foreground: 215 20% 75%;
+    
+    --accent: 217 33% 17%;
+    --accent-foreground: 0 0% 98%;
+    
+    --border: 217 33% 25%;
+    --input: 217 33% 22%;
+    --ring: 213 27% 84%;
+    
+    --avatar-bg: 215 28% 17%;
+    --avatar-fg: 210 100% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html, body {
+    @apply bg-background text-foreground overflow-x-hidden;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overscroll-behavior: none;
+  }
+
+  html {
+    @apply scroll-smooth;
+    height: 100%;
+  }
+  
+  body {
+    @apply min-h-screen flex flex-col;
+    height: 100%;
+    position: fixed;
+    width: 100%;
+    overflow: auto;
+  }
+  
+  /* Fix for unnecessary scrolling */
+  #root {
+    @apply min-h-screen flex flex-col;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+@layer components {
+  .glass-morphism {
+    @apply backdrop-blur-md bg-white/80 border border-white/20 shadow-sm dark:bg-[#131622]/90 dark:border-white/5;
+  }
+
+  .glass-card {
+    @apply backdrop-blur-md bg-white/90 border border-white/30 shadow-sm rounded-xl dark:bg-[#131824]/90 dark:border-white/5;
+  }
+
+  .input-focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/20 focus-visible:ring-offset-2 transition-all duration-200;
+  }
+  
+  /* Disable hover effects on mobile devices */
+  @media (hover: hover) and (pointer: fine) {
+    .button-hover {
+      @apply hover:shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all duration-200;
+    }
+    
+    .card-container {
+      @apply hover:shadow-lg hover:scale-[1.01] hover:-translate-y-0.5;
+    }
+    
+    .hover-lift {
+      @apply hover:shadow-md hover:-translate-y-0.5 hover:scale-[1.01];
+    }
+    
+    .hover-lift-sm {
+      @apply hover:shadow-sm hover:-translate-y-0.5;
+    }
+  }
+  
+  /* Base styling without hover effects for all devices */
+  .button-hover {
+    @apply transition-all duration-200 active:scale-[0.98];
+  }
+  
+  .card-container {
+    @apply relative overflow-hidden glass-card transition-all duration-300 border border-border/40 dark:border-white/5;
+  }
+
+  .pill-badge {
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+  }
+
+  .role-badge-student {
+    @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-medium text-blue-500 bg-blue-100 dark:bg-[#0D1A2D] dark:text-[#0084FF];
+  }
+
+  .role-badge-teacher {
+    @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-medium text-blue-600 bg-blue-100 dark:bg-[#0D1A2D] dark:text-[#0084FF];
+  }
+
+  .avatar-icon {
+    @apply bg-[#e6f2ff] text-[#1e88e5] dark:bg-[#172a3f] dark:text-[#4d9fff];
+  }
+  
+  .hover-lift {
+    @apply transition-all duration-200;
+  }
+  
+  .hover-lift-sm {
+    @apply transition-all duration-200;
+  }
+}
